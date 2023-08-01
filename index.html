@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  class="h-full"
+>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -9,32 +12,33 @@
     <title>Document</title>
   </head>
   <script src="https://unpkg.com/vue@3"></script>
-  <body>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <body class="h-full grid place-items-center">
     <div id="app">
-      <p>
-        <input
-          type="text"
-          v-model="greeting"
-        />
-      </p>
-      <p>{{greeting}} ({{greeting.length}})</p>
+      <section>
+        <h2 class="font-bold mb-2">Assignments</h2>
+      </section>
+
+      <ul>
+        <!-- Dynamically creates a list of assigments from the assignments object -->
+        <li v-for="assignment in assignments">{{ assignment.name }}</li>
+      </ul>
     </div>
 
     <script>
-      Vue.createApp({
+      // Creates a component with an object that contains our assignments
+      let app = {
         data() {
           return {
-            greeting: "Hello World",
+            assignments: [
+              { name: "Finish project", complete: false },
+              { name: "Read chapter 4", complete: false },
+              { name: "Turn in homework", complete: false },
+            ],
           };
         },
-
-        // Updates the value of 'greeting' after 3 seconds
-        mounted() {
-          setTimeout(() => {
-            this.greeting = "changed";
-          }, 3000);
-        },
-      }).mount("#app");
+      };
+      Vue.createApp(app).mount("#app");
     </script>
   </body>
 </html>
