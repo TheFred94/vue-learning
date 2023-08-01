@@ -37,7 +37,12 @@
         <!-- <pre>{{assignments}}</pre> -->
       </section>
 
-      <section class="mt-8">
+      <!-- Only show this section if we have assignments that are completed and that array is more than 0 -->
+      <!-- Use either v-show or v-if depending on the usecase. v-show automatically adds display:none -->
+      <section
+        v-show="assignments.filter(a => a.complete).length"
+        class="mt-8"
+      >
         <h2 class="font-bold mb-2">Completed</h2>
 
         <ul>
