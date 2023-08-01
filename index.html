@@ -6,33 +6,39 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
     <title>Document</title>
   </head>
   <script src="https://unpkg.com/vue@3"></script>
   <body>
     <div id="app">
-      <p>
-        <input
-          type="text"
-          v-model="greeting"
-        />
-      </p>
-      <p>{{greeting}} ({{greeting.length}})</p>
+      <!-- When you see v-bind think: We want to bind the attribute called class to the result of this expression -->
+      <!-- ! v-bind can be bound as a shorthand ':' -->
+      <!-- ! Using ':' uses the expression "buttonClasses instead of the string version" -->
+      <button
+        :class="buttonClasses"
+        v-on:click="toggle"
+      >
+        Click Me
+      </button>
     </div>
 
     <script>
       Vue.createApp({
         data() {
           return {
-            greeting: "Hello World",
+            // Bind class to text green
+            buttonClasses: "text-green",
           };
         },
 
-        // Updates the value of 'greeting' after 3 seconds
-        mounted() {
-          setTimeout(() => {
-            this.greeting = "changed";
-          }, 3000);
+        methods: {
+          toggle() {
+            alert("toggle");
+          },
         },
       }).mount("#app");
     </script>
