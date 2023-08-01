@@ -15,13 +15,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <body class="h-full grid place-items-center">
     <div id="app">
-      <section>
+      <section v-show="inProgressAssignments.length">
         <h2 class="font-bold mb-2">In progress</h2>
 
         <ul>
           <!-- Dynamically creates a list of assigments from the assignments object -->
           <li
-            v-for="assignment in assignments.filter(a => !a.complete)"
+            v-for="assignment in inProgressAssignments"
             :key="assignment.id"
           >
             <label
@@ -40,7 +40,7 @@
       <!-- Only show this section if we have assignments that are completed and that array is more than 0 -->
       <!-- Use either v-show or v-if depending on the usecase. v-show automatically adds display:none -->
       <section
-        v-show="assignments.filter(a => a.complete).length"
+        v-show="completedAssignments.length"
         class="mt-8"
       >
         <h2 class="font-bold mb-2">Completed</h2>
@@ -48,7 +48,7 @@
         <ul>
           <!-- Dynamically creates a list of assigments from the assignments object -->
           <li
-            v-for="assignment in assignments.filter(a => a.complete)"
+            v-for="assignment in completedAssignments"
             :key="assignment.id"
           >
             <label
@@ -76,6 +76,16 @@
               { name: "Turn in homework", complete: false, id: 3 },
             ],
           };
+        },
+
+        // Creating a computed property removes the need for repeating code and can simply be used in the above code in a conditional statement.
+        computed: {
+          completedAssignments() {
+            return this.assignments.filter((assignment) => assignment.complete);
+          },
+          inProgressAssignments() {
+            return this.assignments.filter((assignment) => !assignment.complete);
+          },
         },
       };
       Vue.createApp(app).mount("#app");
