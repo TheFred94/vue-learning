@@ -16,13 +16,48 @@
   <body class="h-full grid place-items-center">
     <div id="app">
       <section>
-        <h2 class="font-bold mb-2">Assignments</h2>
+        <h2 class="font-bold mb-2">In progress</h2>
+
+        <ul>
+          <!-- Dynamically creates a list of assigments from the assignments object -->
+          <li
+            v-for="assignment in assignments.filter(a => !a.complete)"
+            :key="assignment.id"
+          >
+            <label
+              >{{ assignment.name }}
+              <!-- Binds the value of the input to the complete property in the assignments object -->
+              <input
+                type="checkbox"
+                v-model="assignment.complete"
+              />
+            </label>
+          </li>
+        </ul>
+        <!-- <pre>{{assignments}}</pre> -->
       </section>
 
-      <ul>
-        <!-- Dynamically creates a list of assigments from the assignments object -->
-        <li v-for="assignment in assignments">{{ assignment.name }}</li>
-      </ul>
+      <section class="mt-8">
+        <h2 class="font-bold mb-2">Completed</h2>
+
+        <ul>
+          <!-- Dynamically creates a list of assigments from the assignments object -->
+          <li
+            v-for="assignment in assignments.filter(a => a.complete)"
+            :key="assignment.id"
+          >
+            <label
+              >{{ assignment.name }}
+              <!-- Binds the value of the input to the complete property in the assignments object -->
+              <input
+                type="checkbox"
+                v-model="assignment.complete"
+              />
+            </label>
+          </li>
+        </ul>
+        <!-- <pre>{{assignments}}</pre> -->
+      </section>
     </div>
 
     <script>
@@ -31,9 +66,9 @@
         data() {
           return {
             assignments: [
-              { name: "Finish project", complete: false },
-              { name: "Read chapter 4", complete: false },
-              { name: "Turn in homework", complete: false },
+              { name: "Finish project", complete: false, id: 1 },
+              { name: "Read chapter 4", complete: false, id: 2 },
+              { name: "Turn in homework", complete: false, id: 3 },
             ],
           };
         },
