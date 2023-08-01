@@ -27,6 +27,13 @@
             greeting: "Hello World",
           };
         },
+
+        // Updates the value of 'greeting' after 3 seconds
+        mounted() {
+          setTimeout(() => {
+            this.greeting = "changed";
+          }, 3000);
+        },
       }).mount("#app");
     </script>
   </body>
