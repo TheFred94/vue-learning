@@ -16,11 +16,12 @@
   <body>
     <div id="app">
       <!-- When you see v-bind think: We want to bind the attribute called class to the result of this expression -->
-      <!-- ! v-bind can be bound as a shorthand ':' -->
-      <!-- ! Using ':' uses the expression "buttonClasses instead of the string version" -->
+      <!-- ! v-bind can be bound as a shorthand ':' 
+       Using ':' uses the expression "buttonClasses instead of the string version" -->
+      <!-- Using '@' is the shorthand for v-on -->
       <button
-        :class="buttonClasses"
-        v-on:click="toggle"
+        :class="active ? 'text-red' : 'text-green'"
+        @click="toggle"
       >
         Click Me
       </button>
@@ -31,13 +32,15 @@
         data() {
           return {
             // Bind class to text green
-            buttonClasses: "text-green",
+
+            active: false,
           };
         },
 
+        // Custom methods are nested inside 'methods'
         methods: {
           toggle() {
-            alert("toggle");
+            this.active = !this.active;
           },
         },
       }).mount("#app");
