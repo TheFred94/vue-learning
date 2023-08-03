@@ -6,34 +6,15 @@ export default {
 
     template: `
             
-        <assignment-list :assignments="inProgressAssignments" title="In Progress"></assignment-list>
+        <section class="space-y-6" >
+            <!--  The props from the Assignment component are passed in like this using the v-bind shorthand since we want the computed value -->
+            <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
+            
+            <!-- We made AssignmentList generic and can now pass in data from the outside  -->
+            <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
+        </section>
 
-        <!-- Only show this section if we have assignments that are completed and that array is more than 0 -->
-         <!-- Use either v-show or v-if depending on the usecase. v-show automatically adds display:none -->
-         <section
-          v-show="completedAssignments.length"
-        class="mt-8"
-         >
-     <h2 class="font-bold mb-2">Completed</h2>
 
-        <ul>
-      <!-- Dynamically creates a list of assigments from the assignments object -->
-      <li
-        v-for="assignment in completedAssignments"
-        :key="assignment.id"
-      >
-        <label
-          >{{ assignment.name }}
-          <!-- Binds the value of the input to the complete property in the assignments object -->
-          <input
-            type="checkbox"
-            v-model="assignment.complete"
-          />
-        </label>
-      </li>
-        </ul>
-     <!-- <pre>{{assignments}}</pre> -->
-     </section>
     `,
 
     data() {
@@ -48,11 +29,15 @@ export default {
 
     // Creating a computed property removes the need for repeating code and can simply be used in the above code in a conditional statement.
     computed: {
-        completedAssignments() {
-            return this.assignments.filter((assignment) => assignment.complete);
-        },
-        inProgressAssignments() {
-            return this.assignments.filter((assignment) => !assignment.complete);
-        },
+
+        filters() {
+            return {
+                inProgress:
+                    this.assignments.filter((assignment) => !assignment.complete),
+                completed:
+                    this.assignments.filter((assignment) => assignment.complete),
+
+            }
+        }
     },
 }

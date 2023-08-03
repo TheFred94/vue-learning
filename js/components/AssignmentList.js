@@ -1,26 +1,21 @@
+import Assignment from "./Assignment.js"
+
 export default {
+
+    components: { Assignment },
 
     template: `
             <section v-show="assignments.length">
     <h2 class="font-bold mb-2">{{ title }}</h2>
 
     <ul>
-      <!-- Dynamically creates a list of assigments from the assignments object -->
-      <li
+        <!-- Pass in the prop assignment which is an object coming from the 'Assignment'-component -->
+        <assignment
+        :assignment="assignment"
         v-for="assignment in assignments"
-        :key="assignment.id"
-      >
-        <label
-          >{{ assignment.name }}
-          <!-- Binds the value of the input to the complete property in the assignments object -->
-          <input
-            type="checkbox"
-            v-model="assignment.complete"
-          />
-        </label>
-      </li>
+        :key="assignment.id"></assignment>
     </ul>
-    <!-- <pre>{{assignments}}</pre> -->
+
   </section>
   `,
 
