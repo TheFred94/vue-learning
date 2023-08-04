@@ -1,11 +1,11 @@
 export default {
 
-    template: `
+  template: `
     <li>
-        <label
+        <label class="p-2 flex justify-between items-center" 
           >{{ assignment.name }}
           <!-- Binds the value of the input to the complete property in the assignments object -->
-          <input
+          <input class="ml-4"
             type="checkbox"
             v-model="assignment.complete"
           />
@@ -13,7 +13,7 @@ export default {
       </li>
     `,
 
-    props: {
-        assignment: Object
-    }
+  props: {
+    assignment: Object
+  }
 }

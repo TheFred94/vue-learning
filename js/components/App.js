@@ -5,6 +5,6 @@ export default {
 
   template: `
   <assignments></assignments>
-  
+
 `
 };
