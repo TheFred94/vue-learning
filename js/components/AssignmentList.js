@@ -16,6 +16,8 @@ export default {
         :key="assignment.id"></assignment>
     </ul>
 
+    
+
   </section>
   `,
 
