@@ -6,9 +6,15 @@ export default {
 
     template: `
             <section v-show="assignments.length">
-    <h2 class="font-bold mb-2">{{ title }}</h2>
+    <h2 class="font-bold mb-2">{{ title }}
+        <span>({{assignments.length}})</span>
+    </h2>
 
-    <ul class="border border-gray-600 divide-y divide-gray-600">
+    <div class="flex gap-2">
+        <button v-for="tag in tags" class="border rounded px-2 py-1 text-xs">{{ tag }}</button>
+    </div>
+
+    <ul class="border border-gray-600 divide-y divide-gray-600 mt-6">
         <!-- Pass in the prop assignment which is an object coming from the 'Assignment'-component -->
         <assignment
         :assignment="assignment"
@@ -16,7 +22,7 @@ export default {
         :key="assignment.id"></assignment>
     </ul>
 
-    
+
 
   </section>
   `,
@@ -24,5 +30,11 @@ export default {
     props: {
         assignments: Array,
         title: String
+    },
+
+    computed: {
+        tags() {
+            return ['science', 'math', 'reading'];
+        }
     }
 }
