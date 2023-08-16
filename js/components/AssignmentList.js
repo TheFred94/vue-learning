@@ -11,9 +11,10 @@ export default {
         <span>({{assignments.length}})</span>
     </h2>
 
-    <!-- We use v-model to bind the value and listen for when the value changes -->
+    <!-- We use v-model to bind the value and listen for when the value changes. 
+    We also explicitly tell v-model that we want to call that specific model "currentTags". modelValue is kind of arbitrary.  -->
     <assignment-tags
-     v-model="currentTag"
+     v-model:currentTag="currentTag"
     :initial-tags="assignments.map(a => a.tag)" 
     />
 
