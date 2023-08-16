@@ -11,10 +11,10 @@ export default {
         <span>({{assignments.length}})</span>
     </h2>
 
-    <assignment-tags 
+    <!-- We use v-model to bind the value and listen for when the value changes -->
+    <assignment-tags
+     v-model="currentTag"
     :initial-tags="assignments.map(a => a.tag)" 
-    :current-tag="currentTag"
-    @change="currentTag = $event"
     />
 
     <ul class="border border-gray-600 divide-y divide-gray-600 mt-6">
