@@ -14,7 +14,13 @@ export default {
             </assignment-list>
 
             <!-- We made AssignmentList generic and can now pass in data from the outside  -->
-            <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
+            <assignment-list 
+            v-if="showCompleted"
+            :assignments="filters.completed" 
+            title="Completed" 
+            can-toggle
+            @toggle="showCompleted = !showCompleted"
+        ></assignment-list>
 
 
         </section>
@@ -24,6 +30,7 @@ export default {
         return {
             assignments: [
             ],
+            showCompleted: true,
         };
     },
 
