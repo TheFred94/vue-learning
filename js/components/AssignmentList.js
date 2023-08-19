@@ -1,4 +1,4 @@
-import Assignment from "./Assignment.js"
+import Assignment from "./Assignment.js";
 import AssignmentTags from "./AssignmentTags.js";
 
 export default {
@@ -6,11 +6,10 @@ export default {
 
     template: `
         <section v-show="assignments.length" class="w-60">
-             <div class="flex justify-between items-start">
+             <div class="flex justify-between items-start"> 
                 <h2 class="font-bold mb-2">{{ title }}
                     <span>({{assignments.length}})</span>
                 </h2>
-
                 <button v-show="canToggle" @click="$emit('toggle')">&times;</button>
             </div>
 
@@ -38,7 +37,7 @@ export default {
     props: {
         assignments: Array,
         title: String,
-        canToggle: { type: Boolean, default: false }
+        canToggle: { type: Boolean, default: false },
     },
 
     data() {
