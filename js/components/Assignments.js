@@ -6,15 +6,16 @@ export default {
     components: { AssignmentList, AssignmentCreate },
 
     template: `       
-        <section class="space-y-6" >
+        <section class="flex gap-8" >
             <!--  The props from the Assignment component are passed in like this using the v-bind shorthand since we want the computed value -->
-            <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
-            
+            <assignment-list :assignments="filters.inProgress" title="In Progress">
+                <!-- Components listens for its child through a custom event called 'add' -->
+            <assignment-create @add="add"></assignment-create>
+            </assignment-list>
+
             <!-- We made AssignmentList generic and can now pass in data from the outside  -->
             <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
 
-            <!-- Components listens for its child through a custom event called 'add' -->
-            <assignment-create @add="add"></assignment-create>
 
         </section>
     `,
